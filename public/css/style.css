@@ -1,0 +1,45 @@
+/* Estilo para o container do jogo */
+#gameContainer {
+  display: flex;
+  margin: 20px;
+}
+
+/* Estilo para a área do jogo */
+#gameArea {
+  width: 600px;  /* Largura da área de jogo */
+  height: 400px; /* Altura da área de jogo */
+  background-color: lightblue; /* Cor de fundo para visualização */
+  position: relative;
+  overflow: hidden;  /* Garante que o personagem não ultrapasse os limites */
+}
+
+/* Estilo para o personagem */
+#character {
+  width: 50px;  /* Largura do personagem */
+  height: 50px; /* Altura do personagem */
+  position: absolute;
+  top: 175px; /* Posição inicial no eixo Y */
+  left: 275px; /* Posição inicial no eixo X */
+}
+
+/* Estilo para o HUD */
+#hud {
+  margin-left: 20px;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+  width: 200px;
+  font-family: Arial, sans-serif;
+}
+
+#hud h3 {
+  margin-top: 0;
+}
+
+#hud p {
+  margin: 5px 0;
+}
+
+#hud span {
+  font-weight: bold;
+}
