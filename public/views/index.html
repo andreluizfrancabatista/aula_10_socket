@@ -52,8 +52,8 @@
         const send  = document.getElementById("send-button")
         const messages = document.getElementById("messages-display")
 
-        const form_nickname = document.getElementById("form_nickname")
-        const input_nickname = document.getElementById("input_nickname")
+        // const form_nickname = document.getElementById("form_nickname")
+        // const input_nickname = document.getElementById("input_nickname")
 
         send.addEventListener('click', function (e) {
             e.preventDefault()
@@ -63,13 +63,13 @@
             }
         })
 
-        form_nickname.addEventListener('submit', function (e) {
-            e.preventDefault()
-            if (input_nickname) {
-                socket.emit('trocaNickname', input_nickname.value)
-                input_nickname.value = ''
-            }
-        })
+        // form_nickname.addEventListener('submit', function (e) {
+        //     e.preventDefault()
+        //     if (input_nickname) {
+        //         socket.emit('trocaNickname', input_nickname.value)
+        //         input_nickname.value = ''
+        //     }
+        // })
 
         socket.on('chat', function (msg, nickname) {
             //<div class="message"><span class="username">Usuário 1:</span> Olá!</div>
