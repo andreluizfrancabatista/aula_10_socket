@@ -1,13 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
+
 <body>
-    <ul id="messages">
-        
+    <div class="chat-container">
+        <div class="users-list">
+            <h3>Usuários Conectados</h3>
+            <ul id="user-names">
+                <li>Usuário 1</li>
+                <li>Usuário 2</li>
+                <li>Usuário 3</li>
+            </ul>
+        </div>
+        <div class="chat-box">
+            <div class="messages-display" id="messages-display">
+                <!-- Mensagens serão exibidas aqui -->
+                <div class="message"><span class="username">Usuário 1:</span> Olá!</div>
+                <div class="message"><span class="username">Usuário 2:</span> Oi, tudo bem?</div>
+            </div>
+            <div class="message-input">
+                <input type="text" id="message-input" placeholder="Digite sua mensagem...">
+                <button id="send-button">Enviar</button>
+                <input type="submit" hidden />
+            </div>
+        </div>
+    </div>
+    <!-- Início Código antigo -->
+    <!-- <ul id="messages">
+
     </ul>
     <form action="" id="form">
         <input type="text" id="input">
@@ -16,39 +42,55 @@
     <form action="" id="form_nickname">
         <input type="text" id="input_nickname">
         <button>Trocar nickname</button>
-    </form>
+    </form> -->
+    <!-- Fim Código antigo -->
     <script src="/socket.io/socket.io.js"></script>
     <script>
         const socket = io() //Lado do cliente
-        const form = document.getElementById("form")
-        const input = document.getElementById("input")
-        const messages = document.getElementById("messages") //<ul>
+        // const form = document.getElementById("form")
+        const input = document.getElementById("message-input")
+        const send  = document.getElementById("send-button")
+        const messages = document.getElementById("messages-display")
+
         const form_nickname = document.getElementById("form_nickname")
         const input_nickname = document.getElementById("input_nickname")
 
-        form.addEventListener('submit', function(e) {
+        send.addEventListener('click', function (e) {
             e.preventDefault()
-            if(input.value){
+            if (input.value) {
                 socket.emit('chat', input.value)
                 input.value = ''
             }
         })
 
-        form_nickname.addEventListener('submit', function(e) {
+        form_nickname.addEventListener('submit', function (e) {
             e.preventDefault()
-            if(input_nickname){
+            if (input_nickname) {
                 socket.emit('trocaNickname', input_nickname.value)
                 input_nickname.value = ''
             }
         })
 
-        socket.on('chat', function(msg, nickname) {
-            var item = document.createElement('li') //<li> </li>
-            item.textContent = nickname + ': ' + msg //<li>nickname: Boa tarde</li>
+        socket.on('chat', function (msg, nickname) {
+            //<div class="message"><span class="username">Usuário 1:</span> Olá!</div>
+            var item = document.createElement('div')
+            item.classList.add('message')
+
+
+            var userSpan = document.createElement('span')
+            userSpan.classList.add('username')
+            let userText = document.createTextNode(`${nickname}: `)
+            userSpan.appendChild(userText)
+
+            item.appendChild(userSpan)
+            let messageText = document.createTextNode(msg)
+            item.appendChild(messageText)
+
             messages.appendChild(item)
 
         })
 
     </script>
 </body>
+
 </html>
